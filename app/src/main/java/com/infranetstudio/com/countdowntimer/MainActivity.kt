@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var timer: CountDownTimer? = null
     private var currentTime: Long = 0
-    private var totalTimer: Long = 10000
+    private var totalTimer: Long = 60000
 //    private var onTickTime: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnPause.isEnabled = false
 
         binding.btnStart.setOnClickListener {
             countDownTime()
@@ -37,7 +38,9 @@ class MainActivity : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
                 if (binding.btnStart.text == "Resume") {
                     binding.btnStart.text = "Start"
+                    binding.btnPause.isEnabled = false
                 }
+                binding.btnPause.isEnabled = true
                 currentTime = totalTimer - millisUntilFinished
                 binding.tvTimer.text = (millisUntilFinished / 1000).toString()
                 binding.btnStart.isEnabled = false
@@ -65,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         if (binding.btnStart.text == "Start") {
             binding.btnStart.text = "Resume"
             binding.btnStart.isEnabled = true
+            binding.btnPause.isEnabled = false
         }
 
     }
@@ -76,6 +80,8 @@ class MainActivity : AppCompatActivity() {
             currentTime = 0
             binding.tvTimer.text = (totalTimer / 1000).toString()
             binding.btnStart.isEnabled = true
+            binding.btnPause.isEnabled = false
+            binding.btnStart.text = "Start"
         }
 
     }
