@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/app_bg">
 
 
     <TextView
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="60"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
 
